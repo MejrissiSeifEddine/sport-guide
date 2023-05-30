@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url("backkk.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .container {
+      margin-top: 50px;
+    }
+    
+    .title {
+      color: #e2dada; 
+    }
+    
+    .label {
+      color: #4b4b9c; 
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center title">BMI Calculator</h1>
+    <form id="bmiForm" class="mt-4">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Gender:</label>
+        <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" value="male" checked>
+            <label class="form-check-label label">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" value="female">
+            <label class="form-check-label label">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Weight (kg):</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="weight" placeholder="Enter weight in kilograms">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Age:</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="age" placeholder="Enter age in years">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Height (cm):</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="height" placeholder="Enter height in centimeters">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Calculate BMI</button>
+          <a href="home.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </form>
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('bmiForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      calculateBMI();
+    });
+
+    function calculateBMI() {
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      var weight = parseFloat(document.getElementById('weight').value);
+      var age = parseInt(document.getElementById('age').value);
+      var height = parseFloat(document.getElementById('height').value);
+
+      if (isNaN(weight) || isNaN(age) || isNaN(height)) {
+        document.getElementById('result').innerHTML = '<div class="alert alert-danger">Please enter valid values for weight, age, and height.</div>';
+        return;
+      }
+
+      var heightInMeters = height / 100;
+      var bmi = weight / (heightInMeters * heightInMeters);
+      bmi = parseFloat(bmi.toFixed(2));
+
+      var bodyType = '';
+      if (gender === 'male') {
+        if (bmi < 20.7) {
+          bodyType = 'Underweight';
+        } else if (bmi < 26.4) {
+          bodyType = 'Normal weight';
+        } else if (bmi < 27.8) {
+          bodyType = 'Marginally overweight';
+        } else if (bmi < 31.1) {
+          bodyType = 'Overweight';
+        } else {
+          bodyType = 'Obese';
+        }
+      } else {
+        if (bmi < 19.1) {
+          bodyType = 'Underweight';
+        } else if (bmi < 25.8) {
+          bodyType = 'Normal weight';
+        } else if (bmi < 27.3) {
+          bodyType = 'Marginally overweight';
+        } else if (bmi < 32.3) {
+          bodyType = 'Overweight';
+        } else {
+          bodyType = 'Obese';
+        }
+      }
+
+      var resultHTML = '<div class="alert alert-success">';
+      resultHTML += '<strong>Your BMI:</strong> ' + bmi + '<br>';
+      resultHTML += '<strong>Body Type:</strong> ' + bodyType;
+      resultHTML += '</div>';
+
+      document.getElementById('result').innerHTML = resultHTML;
+    }
+  </script>
+</body>
+</html>

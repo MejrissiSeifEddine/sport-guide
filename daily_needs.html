@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Needs Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url("backkk.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .container {
+      margin-top: 50px;
+    }
+    
+    .title {
+      color: #e2dada; 
+    }
+    
+    .label {
+      color: #4b4b9c; 
+    }
+    #result {
+    color: rgb(31, 30, 30) !important; /* Set the text color to white */
+    background-color: rgba(255, 255, 255, 0.8); /* Set a semi-transparent white background color */
+    padding: 10px;
+    margin-top: 20px;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center title">Daily Needs Calculator</h1>
+    <form id="dailyNeedsForm" class="mt-4">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Weight (kg):</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="weight" placeholder="Enter weight in kilograms" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Gender:</label>
+        <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male" required>
+            <label class="form-check-label label" for="genderMale">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female" required>
+            <label class="form-check-label label" for="genderFemale">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Age:</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="age" placeholder="Enter age" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Height (m):</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="height" placeholder="Enter height in meters" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Activity Level:</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="activityLevel" required>
+            <option value="1.2">Sedentary (little or no exercise)</option>
+            <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+            <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+            <option value="1.725">Very active (hard exercise/sports 6-7 days/week)</option>
+            <option value="1.9">Extra active (very hard exercise/sports & physical job)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label label">Goal:</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="goal" required>
+            <option value="maintain">Maintain Weight</option>
+            <option value="lose">Lose Fat</option>
+            <option value="gain">Gain Muscle</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Calculate Daily Needs</button>
+          <a href="home.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </form>
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script src="daily-needs.js"></script>
+</body>
+</html>
